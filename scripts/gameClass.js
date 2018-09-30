@@ -27,11 +27,14 @@ function draw(){
   drawSprites();
   timeTracker();
 
-  if (wallMovement){
+  if (wallMovement && !wallRotation){
     moveWalls();
   }
-  if (wallRotation){
+  if (!wallMovement && wallRotation){
     rotateWalls();
+  }
+  if (wallMovement && wallRotation){
+    bothWalls();
   }
 
   ball.setBoundaries();
@@ -57,7 +60,6 @@ function moveWalls(){
   }
 }
 
-
 function rotateWalls(){
   direction += 2;
   for (var i=0; i<4; i++){
@@ -65,6 +67,26 @@ function rotateWalls(){
     walls[i].rotateToDirection = true;
   }
   for (var i=4; i<walls.length-2; i++){
+    walls[i].setSpeed(3, -direction);
+    walls[i].rotateToDirection = true;
+  }
+}
+
+function bothWalls(){
+  direction += 2;
+  for (var i=0; i<3; i++){
+    var g = walls[i];
+    g.position.y += sin(frameCount/20);
+  }
+  for (var i=3; i<6; i++){
+    var g = walls[i];
+    g.position.y -= sin(frameCount/40);
+  }
+  for (var i=6; i<9; i++){
+    walls[i].setSpeed(3, direction);
+    walls[i].rotateToDirection = true;
+  }
+  for (var i=9; i<walls.length-2; i++){
     walls[i].setSpeed(3, -direction);
     walls[i].rotateToDirection = true;
   }
