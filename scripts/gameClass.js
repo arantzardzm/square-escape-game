@@ -7,10 +7,12 @@ var timer;
 var level;
 var announcement;
 
-var verticalMovement = false;
-var horizontalMovement = false;
+var direction;
+var wallMovement = false;
+var wallRotation = false;
 
 function preload(){
+  keyImage = loadImage('../images/key.png');
   doorImage = loadImage('../images/door.png');
 }
 
@@ -25,11 +27,11 @@ function draw(){
   drawSprites();
   timeTracker();
 
-  if (verticalMovement){
-    moveWallsVertically();
+  if (wallMovement){
+    moveWalls();
   }
-  if (horizontalMovement){
-
+  if (wallRotation){
+    rotateWalls();
   }
 
   ball.setBoundaries();
@@ -44,19 +46,28 @@ function draw(){
   text(announcement, width/2-90, height/2+10);
 }
 
-function moveWallsVertically(){
-  for (var i=0; i<3; i++){
+function moveWalls(){
+  for (var i=0; i<4; i++){
     var g = walls[i];
     g.position.y += sin(frameCount/20);
   }
-  for (var i=3; i<walls.length-3; i++){
+  for (var i=4; i<walls.length-3; i++){
     var g = walls[i];
     g.position.y -= sin(frameCount/40);
   }
 }
 
-function moveWallsHorizontally(){
 
+function rotateWalls(){
+  direction += 2;
+  for (var i=0; i<4; i++){
+    walls[i].setSpeed(3, direction);
+    walls[i].rotateToDirection = true;
+  }
+  for (var i=4; i<walls.length-2; i++){
+    walls[i].setSpeed(3, -direction);
+    walls[i].rotateToDirection = true;
+  }
 }
 
 function pickUpKey(){

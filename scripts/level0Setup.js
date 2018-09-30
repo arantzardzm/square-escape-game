@@ -3,9 +3,6 @@ function levelSetup(){
   timer = 15;
   announcement = "";
 
-  verticalMovement = false;
-  horizontalMovement = false;
-
   ball = new Ball(width/3-100, height/2, 30);
 
   //no keys

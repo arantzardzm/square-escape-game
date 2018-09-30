@@ -3,13 +3,11 @@ function levelSetup(){
   timer = 14;
   announcement = "";
 
-  verticalMovement = false;
-  horizontalMovement = false;
-
   ball = new Ball(width/2, height/2, 30);
 
   keys = new Group();
   keys.add(createSprite(width/2+60, height/2+20, 10, 10));
+  keys[0].shapeColor = color(0, 0, 0);
 
   doors = new Group();
   doors.add(createSprite(width-100, height-200, 25, 35));
