@@ -2,7 +2,6 @@ var ball;
 var keys;
 var doors;
 var walls;
-var enemies;
 
 var timer;
 var level;
@@ -39,7 +38,7 @@ function draw(){
   ball.doorEntering();
 
   textSize(26);
-  text(timer, 20, 40);
+  text(timer, width-40, 40);
 
   textSize(40);
   text(announcement, width/2-90, height/2+10);

@@ -1,6 +1,6 @@
 function levelSetup(){
   level = 2;
-  timer = 10;
+  timer = 13;
   announcement = "";
   verticalMovement = true;
   horizontalMovement = false;
@@ -26,6 +26,4 @@ function levelSetup(){
   walls.add(createSprite(750, 450, 200, 30));
   walls.add(createSprite(650, 390, 30, 200));
   walls.add(createSprite(750, 350, 200, 30));
-
-  //no enemies
 }
