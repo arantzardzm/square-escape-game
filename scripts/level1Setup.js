@@ -7,7 +7,7 @@ function levelSetup(){
 
   keys = new Group();
   keys.add(createSprite(width/2+60, height/2+20, 10, 10));
-  keys[0].shapeColor = color(0, 0, 0);
+  keys[0].addImage(keyImage);
 
   doors = new Group();
   doors.add(createSprite(width-100, height-200, 25, 35));
