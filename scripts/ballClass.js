@@ -12,15 +12,21 @@ function Ball(ballInitX, ballInitY, ballInitSize){
   ballSprite.shapeColor = color(231,54,33);
 
   this.wallCollision = function(){
-    ballSprite.collide(walls);
+    if (walls != null){
+      ballSprite.collide(walls);
+    }
   }
 
   this.keyGrabbing = function(){
-    ballSprite.overlap(keys, pickUpKey);
+    if (keys != null){
+      ballSprite.overlap(keys, pickUpKey);
+    }
   }
 
   this.doorEntering = function(){
-    ballSprite.overlap(doors, enterDoor);
+    if (doors != null){
+      ballSprite.overlap(doors, enterDoor);
+    }
   }
 
   this.userMovement = function(){

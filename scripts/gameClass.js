@@ -1,57 +1,82 @@
-var ball; //Initializing ball, keys, doors, walls, and enemies
+var ball;
 var keys;
 var doors;
 var walls;
 var enemies;
 
-var timer; //Initializing timer, announcement, and level
+var timer;
 var level;
 var announcement;
 
-function preload(){ //Preloading key and door image
-  keyImage = loadImage('../images/key.png');
+var verticalMovement = false;
+var horizontalMovement = false;
+
+function preload(){
   doorImage = loadImage('../images/door.png');
 }
 
-function setup(){ //Setting canvas and level (0-5)
+function setup(){
   createCanvas(800,600);
   levelSetup();
 }
 
-function draw(){ //Drawing background and sprites
+function draw(){
   background(255);
-  drawSprites();
-  beginTime();
 
-  ball.setBoundaries(); //Setting ball's actions
+  drawSprites();
+  timeTracker();
+
+  if (verticalMovement){
+    moveWallsVertically();
+  }
+  if (horizontalMovement){
+
+  }
+
+  ball.setBoundaries();
   ball.wallCollision();
   ball.keyGrabbing();
   ball.doorEntering();
 
-  textSize(26); //Timer setup
+  textSize(26);
   text(timer, 20, 40);
 
-  textSize(40); //Announcement setup (new level or game over)
+  textSize(40);
   text(announcement, width/2-90, height/2+10);
 }
 
-function pickUpKey(){ //When key is picked up, remove wall and key
-  walls[walls.length-1].remove();
+function moveWallsVertically(){
+  for (var i=0; i<3; i++){
+    var g = walls[i];
+    g.position.y += sin(frameCount/20);
+  }
+  for (var i=3; i<walls.length-3; i++){
+    var g = walls[i];
+    g.position.y -= sin(frameCount/40);
+  }
+}
+
+function moveWallsHorizontally(){
+
+}
+
+function pickUpKey(){
+  walls[walls.length-1].velocity = createVector(10, 0);
   keys[keys.length-1].remove();
 }
 
-function enterDoor(){ //When user enters door, remove all sprites and start next level
-  announcement = "New level!";
+function enterDoor(){
   noLoop();
+  announcement = "New level!";
   var newLevel = (function() {window.location.href = "../level"+(level+1)+"/index.html";})
   setTimeout(newLevel, 2000);
 }
 
-function beginTime(){ //Time function
+function timeTracker(){
   if (frameCount % 60 == 0 && timer >= 0){
     timer--;
   }
-  if (timer <= 0){ //Checks when time runs out
+  if (timer <= 0){
     announcement = "Try again!";
     noLoop();
     var restartLevel = (function() {window.location.href = "../level"+(level)+"/index.html";})
@@ -59,17 +84,6 @@ function beginTime(){ //Time function
   }
 }
 
-function removeSprites(){ //remove sprites from screen
-  ball.death();
-  do {
-    walls[0].remove();
-  } while(walls[0] !== undefined);
-  do {
-    doors[0].remove();
-  } while(doors[0] !== undefined)
-}
-
-
-function keyPressed() { //key/user movement
+function keyPressed() {
   ball.userMovement();
 }
