@@ -1,14 +1,14 @@
+var ballSprite;
 var ballInitX;
 var ballInitY;
-var ballSize;
-var ballSprite;
+var ballInitSize;
 
-function Ball(ballInitX, ballInitY, ballSize){
+function Ball(ballInitX, ballInitY, ballInitSize){
   this.ballInitX = ballInitX;
   this.ballInitY = ballInitY;
-  this.ballSize = ballSize;
+  this.ballInitSize = ballInitSize;
 
-  ballSprite = createSprite(ballInitX, ballInitY, ballSize, ballSize);
+  ballSprite = createSprite(ballInitX, ballInitY, ballInitSize, ballInitSize);
   ballSprite.shapeColor = color(231,54,33);
 
   this.wallCollision = function(){

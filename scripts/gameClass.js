@@ -4,6 +4,10 @@ var ballPositionY;
 var ballSize;
 
 var keys;
+var keyPositionX;
+var keyPositionY;
+var keySize;
+
 var timer;
 var score;
 var walls;
@@ -23,8 +27,10 @@ function setup(){
   ballSize = 30;
   ball = new Ball(ballPositionX, ballPositionY, ballSize);
 
+  keyPositionX = width/2+60;
+  keyPositionY = height/2+20;
   keys = new Group();
-  keys.add(createSprite(width/2+60, height/2+20, 10, 10));
+  keys.add(createSprite(keyPositionX, keyPositionY, 10, 10));
   keys[0].addImage(keyImage);
 
   walls = new Group();
@@ -38,9 +44,9 @@ function setup(){
   doors[0].addImage(doorImage);
 
 
-  score = 0;
-  timer = 10;
-  announcement = "";
+    score = 0;
+    timer = 10;
+    announcement = "";
 }
 
 function draw(){
