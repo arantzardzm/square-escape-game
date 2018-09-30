@@ -1,96 +1,65 @@
-var ball;
-var ballPositionX;
-var ballPositionY;
-var ballSize;
-
+var ball; //Initializing ball, keys, doors, walls, and enemies
 var keys;
-var keyPositionX;
-var keyPositionY;
-var keySize;
-
-var timer;
-var score;
-var walls;
 var doors;
+var walls;
+var enemies;
+
+var timer; //Initializing timer, announcement, and level
+var level;
 var announcement;
 
-function preload(){
-  keyImage = loadImage('images/key.png');
-  doorImage = loadImage('images/door.png');
+function preload(){ //Preloading key and door image
+  keyImage = loadImage('../images/key.png');
+  doorImage = loadImage('../images/door.png');
 }
 
-function setup(){
+function setup(){ //Setting canvas and level (0-5)
   createCanvas(800,600);
-
-  ballPositionX = width/2;
-  ballPositionY = height/2;
-  ballSize = 30;
-  ball = new Ball(ballPositionX, ballPositionY, ballSize);
-
-  keyPositionX = width/2+60;
-  keyPositionY = height/2+20;
-  keys = new Group();
-  keys.add(createSprite(keyPositionX, keyPositionY, 10, 10));
-  keys[0].addImage(keyImage);
-
-  walls = new Group();
-  walls.add(createSprite(500, 300, 30, 200));
-  walls.add(createSprite(300, 300, 30, 100));
-  walls.add(createSprite(380, 360, 210, 30));
-  walls.add(createSprite(370, 240, 240, 30));
-
-  doors = new Group();
-  doors.add(createSprite(700, 500, 25, 35));
-  doors[0].addImage(doorImage);
-
-
-    score = 0;
-    timer = 10;
-    announcement = "";
+  levelSetup();
 }
 
-function draw(){
-  background(210,210,210);
-  textSize(26);
-  text(timer, 20, 40);
-
+function draw(){ //Drawing background and sprites
+  background(255);
   drawSprites();
-
   beginTime();
 
-  ball.setBoundaries();
+  ball.setBoundaries(); //Setting ball's actions
   ball.wallCollision();
   ball.keyGrabbing();
   ball.doorEntering();
 
-  textSize(40);
-  text(announcement, width/2-110, height/2+10);
+  textSize(26); //Timer setup
+  text(timer, 20, 40);
+
+  textSize(40); //Announcement setup (new level or game over)
+  text(announcement, width/2-90, height/2+10);
 }
 
-function pickUpKey(){
+function pickUpKey(){ //When key is picked up, remove wall and key
   walls[walls.length-1].remove();
   keys[keys.length-1].remove();
-  timer += 10;
 }
 
-function enterDoor(){
-  removeSprites();
-  announcement = "New Level";
-  score = timer;
-  console.log(timer);
+function enterDoor(){ //When user enters door, remove all sprites and start next level
+  announcement = "New level!";
+  noLoop();
+  var newLevel = (function() {window.location.href = "../level"+(level+1)+"/index.html";})
+  setTimeout(newLevel, 2000);
 }
 
-function beginTime(){
+function beginTime(){ //Time function
   if (frameCount % 60 == 0 && timer >= 0){
     timer--;
   }
-  if (timer < 0){
-    announcement = "Game Over!";
+  if (timer <= 0){ //Checks when time runs out
+    announcement = "Try again!";
     noLoop();
+    var restartLevel = (function() {window.location.href = "../level"+(level)+"/index.html";})
+    setTimeout(restartLevel, 2000);
   }
 }
 
-function removeSprites(){
+function removeSprites(){ //remove sprites from screen
   ball.death();
   do {
     walls[0].remove();
@@ -101,6 +70,6 @@ function removeSprites(){
 }
 
 
-function keyPressed() {
+function keyPressed() { //key/user movement
   ball.userMovement();
 }
