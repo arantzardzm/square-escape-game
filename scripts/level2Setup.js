@@ -16,12 +16,13 @@ function levelSetup(){
 
   walls = new Group();
   walls.add(createSprite(330, 200, 100, 30));
-  walls.add(createSprite(300, 400, 200, 30));
+  walls.add(createSprite(280, 420, 200, 30));
   walls.add(createSprite(500, 100, 100, 30));
-  walls.add(createSprite(600, 450, 100, 30));
-
-  walls.add(createSprite(400, 500, 150, 30));
-  walls.add(createSprite(560, 400, 100, 30));
+  walls.add(createSprite(600, 450, 140, 30));
+  walls.add(createSprite(400, 350, 80, 30));
+  walls.add(createSprite(100, 450, 140, 30));
+  walls.add(createSprite(400, 500, 200, 30));
+  walls.add(createSprite(560, 400, 150, 30));
   walls.add(createSprite(340, 300, 200, 30));
 
   walls.add(createSprite(200, 20, 30, 200));

@@ -50,11 +50,11 @@ function draw(){
 }
 
 function moveWalls(){
-  for (var i=0; i<4; i++){
+  for (var i=0; i<5; i++){
     var g = walls[i];
     g.position.y += sin(frameCount/20);
   }
-  for (var i=4; i<walls.length-3; i++){
+  for (var i=5; i<walls.length-3; i++){
     var g = walls[i];
     g.position.y -= sin(frameCount/40);
   }
@@ -62,11 +62,11 @@ function moveWalls(){
 
 function rotateWalls(){
   direction += 2;
-  for (var i=0; i<4; i++){
+  for (var i=0; i<5; i++){
     walls[i].setSpeed(3, direction);
     walls[i].rotateToDirection = true;
   }
-  for (var i=4; i<walls.length-2; i++){
+  for (var i=5; i<walls.length-2; i++){
     walls[i].setSpeed(3, -direction);
     walls[i].rotateToDirection = true;
   }
@@ -76,18 +76,18 @@ function bothWalls(){
   direction += 2;
   for (var i=0; i<3; i++){
     var g = walls[i];
-    g.position.y += sin(frameCount/20);
+    g.position.y += cos(frameCount/20);
   }
   for (var i=3; i<6; i++){
     var g = walls[i];
-    g.position.y -= sin(frameCount/40);
+    g.position.y -= cos(frameCount/45);
   }
-  for (var i=6; i<9; i++){
-    walls[i].setSpeed(3, direction);
+  for (var i=6; i<10; i++){
+    walls[i].setSpeed(4, direction);
     walls[i].rotateToDirection = true;
   }
-  for (var i=9; i<walls.length-2; i++){
-    walls[i].setSpeed(3, -direction);
+  for (var i=10; i<walls.length-2; i++){
+    walls[i].setSpeed(4, -direction);
     walls[i].rotateToDirection = true;
   }
 }
@@ -99,9 +99,15 @@ function pickUpKey(){
 
 function enterDoor(){
   noLoop();
-  announcement = "New level!";
-  var newLevel = (function() {window.location.href = "../level"+(level+1)+"/index.html";})
-  setTimeout(newLevel, 2000);
+  if (level<5){
+    announcement = "New level!";
+    var newLevel = (function() {window.location.href = "../level"+(level+1)+"/index.html";})
+    setTimeout(newLevel, 2000);
+  } else {
+    announcement = "You won!"
+    var newLevel = (function() {window.location.href = "../main.html";})
+    setTimeout(newLevel, 2000);
+  }
 }
 
 function timeTracker(){

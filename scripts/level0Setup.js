@@ -1,6 +1,6 @@
 function levelSetup(){
   level = 0;
-  timer = 15;
+  timer = 10;
   announcement = "";
 
   ball = new Ball(width/3-100, height/2, 30);

@@ -21,7 +21,9 @@ function levelSetup(){
   walls.add(createSprite(250, 550, 30, 100));
   walls.add(createSprite(230, 300, 30, 100));
   walls.add(createSprite(410, 400, 30, 100));
-  walls.add(createSprite(290, 170, 30, 150));
+  walls.add(createSprite(290, 220, 30, 150));
+
+  walls.add(createSprite(500, 300, 30, 80));
 
   walls.add(createSprite(750, 450, 200, 30));
   walls.add(createSprite(650, 390, 30, 200));
