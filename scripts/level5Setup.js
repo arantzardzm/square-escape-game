@@ -6,7 +6,7 @@ function levelSetup(){
   wallMovement = true;
   wallRotation = true;
 
-  ball = new Ball(50, 150, 30);
+  ball = new Ball(50, 500, 30);
 
   keys = new Group();
   keys.add(createSprite(2*(width/3), height/2-80, 10, 10));
@@ -28,7 +28,7 @@ function levelSetup(){
   walls.add(createSprite(560, 450, 100, 30));
   walls.add(createSprite(340, 400, 30, 150));
   walls.add(createSprite(700, 400, 30, 100));
-  
+
   walls.add(createSprite(700, 370, 200, 30));
   walls.add(createSprite(400, 450, 30, 100));
   walls.add(createSprite(500, 400, 150, 30));

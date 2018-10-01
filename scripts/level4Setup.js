@@ -8,7 +8,7 @@ function levelSetup(){
   ball = new Ball(50, 100, 30);
 
   keys = new Group();
-  keys.add(createSprite(2*(width/3), height/2+100, 10, 10));
+  keys.add(createSprite(200, height-100, 10, 10));
   keys[0].addImage(keyImage);
 
   doors = new Group();
@@ -19,7 +19,7 @@ function levelSetup(){
   walls.add(createSprite(560, 400, 100, 30));
   walls.add(createSprite(200, 100, 30, 100));
   walls.add(createSprite(330, 200, 150, 30));
-  walls.add(createSprite(300, 400, 30, 100));
+  walls.add(createSprite(200, 400, 30, 100));
   walls.add(createSprite(700, 470, 30, 150));
 
   walls.add(createSprite(500, 100, 100, 30));
