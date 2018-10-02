@@ -11,6 +11,8 @@ var direction;
 var wallMovement = false;
 var wallRotation = false;
 
+var beginTime = false;
+
 function preload(){
   keyImage = loadImage('../images/key.png');
   doorImage = loadImage('../images/door.png');
@@ -25,7 +27,10 @@ function draw(){
   background(255);
 
   drawSprites();
-  timeTracker();
+
+  if (beginTime){
+    timeTracker();
+  }
 
   if (wallMovement && !wallRotation){
     moveWalls();
@@ -126,4 +131,5 @@ function timeTracker(){
 
 function keyPressed() {
   ball.userMovement();
+  beginTime = true;
 }
