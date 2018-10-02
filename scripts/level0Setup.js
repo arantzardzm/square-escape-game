@@ -3,7 +3,7 @@ function levelSetup(){
   timer = 10;
   announcement = "";
 
-  ball = new Ball(100, height/2, 30);
+  ball = new Ball(150, height/2, 30);
 
   keys = new Group();
   keys.add(createSprite(width/2+30, height/2, 10, 10));
