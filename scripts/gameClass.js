@@ -50,11 +50,12 @@ function draw(){
 }
 
 function moveWalls(){
-  for (var i=0; i<5; i++){
+  var divider = Math.ceil((walls.length-3)/2);
+  for (var i=0; i<divider; i++){
     var g = walls[i];
     g.position.y += sin(frameCount/20);
   }
-  for (var i=5; i<walls.length-3; i++){
+  for (var i=divider; i<walls.length-3; i++){
     var g = walls[i];
     g.position.y -= sin(frameCount/40);
   }
@@ -62,11 +63,12 @@ function moveWalls(){
 
 function rotateWalls(){
   direction += 2;
-  for (var i=0; i<5; i++){
+  var divider = Math.ceil((walls.length-3)/2);
+  for (var i=0; i<divider; i++){
     walls[i].setSpeed(3, direction);
     walls[i].rotateToDirection = true;
   }
-  for (var i=5; i<walls.length-2; i++){
+  for (var i=divider; i<walls.length-2; i++){
     walls[i].setSpeed(3, -direction);
     walls[i].rotateToDirection = true;
   }
